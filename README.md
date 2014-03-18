@@ -26,7 +26,7 @@ A basic Carousel is a simple image slider, does not re-loop, and is swipeable.
 With an array of images, it would be invoked via:
 
 ```
-{{ss-widget content=images}}
+{{ss-carousel content=images}}
 ```
 
 #### Specifying an item template
