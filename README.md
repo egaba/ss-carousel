@@ -1,4 +1,4 @@
-# Soysauce Carousel (Ember Component)
+# Soysauce Carousel
 
 Mobile-friendly carousel / image slider component for [Ember](http://emberjs.com/).
 
@@ -79,7 +79,7 @@ For example, in order to show dots and buttons, you would specify:
 
 #### Pre-requisites:
 * [npm](http://nodejs.org/download/)
-* [bower](http://bower.io/) || `npm install -g bower`
+* [bower](http://bower.io/) ***or*** `npm install -g bower`
 
 #### Setting up local development from your project
 1) Install the dev packages:
@@ -95,7 +95,7 @@ $ bower link
 3) Link your project to this local copy:
 ```sh
 $ cd ~/path/to/your/project
-$ bower link ember-carousel
+$ bower link ss-carousel
 ```
 
 #### Main Gulp tasks:
