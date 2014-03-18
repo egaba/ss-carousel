@@ -1,0 +1,14 @@
+{{view view.ItemContainer}}
+
+{{#if showDotIndicators}}
+  {{view view.DotContainer}}
+{{/if}}
+
+{{#if showButtons}}
+  <div {{bind-attr class=":carousel-btn :carousel-next-btn :fastclick nextBtnDisabled:disabled"}} {{action "slideNext"}}>
+    <div class="carousel-btn-icon"></div>
+  </div>
+  <div {{bind-attr class=":carousel-btn :carousel-prev-btn :fastclick prevBtnDisabled:disabled"}} {{action "slidePrev"}}>
+    <div class="carousel-btn-icon"></div>
+  </div>
+{{/if}}

@@ -1,0 +1,31 @@
+.ss-carousel {
+  position: relative;
+  overflow-x: hidden;
+  -webkit-user-select: none;
+}
+.ss-carousel-item {
+  position: relative;
+  float: left;
+}
+.ss-carousel-item a,
+.ss-carousel-item img {
+  display: block;
+  max-width: 100%;
+  -webkit-user-drag: none;
+}
+.ss-carousel-item img {
+  width: 100%;
+  margin: 0 auto;
+}
+.ss-carousel:not(.no-transition) .ss-carousel-container {
+  -webkit-transition: -webkit-transform 0.35s cubic-bezier(0.14, 0.34, 0.18, 0.93);
+  -moz-transition: -moz-transform 0.35s cubic-bezier(0.14, 0.34, 0.18, 0.93);
+  -o-transition: -o-transform 0.35s cubic-bezier(0.14, 0.34, 0.18, 0.93);
+  -ms-transition: -ms-transform 0.35s cubic-bezier(0.14, 0.34, 0.18, 0.93);
+  transition: transform 0.35s cubic-bezier(0.14, 0.34, 0.18, 0.93);
+}
+@media (-webkit-transform-3d) {
+  .ss-carousel:not(.no-transition) .ss-carousel-container {
+    -webkit-backface-visibility: hidden;
+  }
+}

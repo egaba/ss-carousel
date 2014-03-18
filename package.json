@@ -1,0 +1,20 @@
+{
+  "name": "ember-carousel",
+  "version": "0.0.1-alpha.1",
+  "description": "mobile-friendly carousel component for ember",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "./node_modules/.bin/bower install && ./node_modules/.bin/gulp bundle"
+  },
+  "author": "Edward Gaba <egaba88@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "bower": "~1.2.8",
+    "qunitjs": "~1.12.0",
+    "gulp": "^3.5.5",
+    "gulp-es6-module-transpiler": "^0.1.0",
+    "gulp-ember-handlebars": "^0.6.0",
+    "gulp-concat": "^2.1.7",
+    "gulp-stylus": "^0.1.0"
+  }
+}
