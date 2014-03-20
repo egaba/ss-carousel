@@ -62,12 +62,12 @@ define("carousel-item",
   function(__exports__) {
     "use strict";
      /**
-      * The CarouselItem is a sub-component of the Carousel which binds its active class
+      * The CarouselItem is a sub-view of the Carousel which binds its active class
       * to the Carousel's current index. The template that the CarouselItem uses first looks for a yielded template.
       * If no yielded template is found, it will look for the template defined in the `itemTemplateName` property.
       *
       * @class CarouselItem
-      * @extends Ember.Component
+      * @extends Ember.View
       * @requires Carousel
       */
     var CarouselItem = Ember.View.extend({
@@ -141,7 +141,7 @@ define("carousel-widget",
     })();
 
     /**
-     * The Carousel is a component that can be used either as an image slider
+     * The Carousel is an Ember view that can be used either as an image slider
      * or product display. This component is based heavily off of the [Soysauce Carousel](http://www.soysaucejs.com/#!/api/carousel/intro),
      * and implements many of its features.
      *
@@ -168,10 +168,10 @@ define("carousel-widget",
      *
      * An infinite Carousel re-loops its indicies when it reaches a boundary (either min or max index). It allows the user
      * to flawlessly progress from the last index to the first index, and vice versa, without
-     * noticing a jump. It can be invoked through specifying a positive `cloneDepth`:
+     * noticing a jump. It can be invoked through specifying the `isInfinite` property:
      *
      * ```
-     * {{ss-carousel items=images cloneDepth=1 itemTemplateName="partials/images"}}
+     * {{ss-carousel items=images isInfinite=true itemTemplateName="partials/images"}}
      * ```
      *
      * The `cloneDepth` specifies the amount of clones it creates on each end. As the Carousel matures
@@ -242,12 +242,10 @@ define("carousel-widget",
 
       /**
        * This is the number of clones to create for the Carousel. In order for a
-       * Carousel to loop-around, this value must be greater than 0. It's recommended
-       * to set this value to 1 for most `infinite` Carousels.
+       * Carousel to loop-around, this value must be greater than 0.
        *
        * @property {Integer} cloneDepth
        * @readOnly
-       * @default 0
        */
       cloneDepth: function() {
         if (this.get('isInfinite') && this.get('hasMultipleItems')) {
@@ -317,8 +315,8 @@ define("carousel-widget",
       showDotIndicators: false,
 
       /**
-       * When `true`, buttons will be displayed on the sides of the carousel,
-       * which send actions to the component to slide to the next/prev item.
+       * When `true`, buttons will be enabled on the carousel, which when clicked,
+       * send actions to the v to slide to the next/prev item.
        *
        * @property {Boolean} showButtons
        * @default false
@@ -939,8 +937,10 @@ define("carousel-widget",
 
   Application.initializer({
     name: 'ss-carousel',
-    initialize: function(container) {
-      container.register('component:ss-carousel', Carousel);
+    initialize: function() {
+      Ember.Handlebars.registerHelper('ss-carousel', function(options) {
+        return Ember.Handlebars.helpers.view.call(this, Carousel, options);
+      });
     }
   });
 })(window.Ember);
