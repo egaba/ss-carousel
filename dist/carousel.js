@@ -246,9 +246,15 @@ define("carousel-widget",
        * to set this value to 1 for most `infinite` Carousels.
        *
        * @property {Integer} cloneDepth
+       * @readOnly
        * @default 0
        */
-      cloneDepth: 0,
+      cloneDepth: function() {
+        if (this.get('isInfinite') && this.get('hasMultipleItems')) {
+          return 1; // TODO: later calculate a higher clone depth depending on peek or multiple items
+        }
+        return 0;
+      }.property().readOnly(),
 
       /**
        * Gestures to register with the Carousel; used by the TouchMixin
@@ -271,9 +277,9 @@ define("carousel-widget",
        * "infinite" mode, where the Carousel does not end.
        *
        * @property {Boolean} isInfinite
-       * @readOnly
+       * @default false
        */
-      isInfinite: Ember.computed.gt('cloneDepth', 0).readOnly(),
+      isInfinite: false,
 
       /**
        * This property determines whether the Carousel should be swipeable or finite.
