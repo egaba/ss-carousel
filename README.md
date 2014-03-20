@@ -26,7 +26,7 @@ A basic Carousel is a simple image slider, does not re-loop, and is swipeable.
 With an array of images, it would be invoked via:
 
 ```
-{{ss-carousel content=images}}
+{{ss-carousel items=images}}
 ```
 
 #### Specifying an item template
@@ -36,13 +36,13 @@ An item template can be specified one of two ways:
 1) Through the `itemTemplateName` property:
 
 ```
-{{ss-carousel content=products itemTemplateName="partials/product-item"}}
+{{ss-carousel items=products itemTemplateName="partials/product-item"}}
 ```
 
 2) Using an inline template:
 
 ```
-{{#ss-carousel content=images}}
+{{#ss-carousel items=images}}
   <img class='my-image' {{bind-attr src=1x alt=alt}}>
 {{/ss-carousel}}
 ```
@@ -54,7 +54,7 @@ to flawlessly progress from the last index to the first index, and vice versa, w
 noticing a jump. It can be invoked through specifying a positive `cloneDepth`:
 
 ```
-{{ss-carousel content=images cloneDepth=1}}
+{{ss-carousel items=images cloneDepth=1}}
 ```
 
 The `cloneDepth` specifies the amount of clones it creates on each end. As the Carousel matures
@@ -72,7 +72,7 @@ The following properties can be enabled in order to show the accessory:
 
 For example, in order to show dots and buttons, you would specify:
 ```
-{{ss-carousel content=images showButtons=true showDotIndicators=true}}
+{{ss-carousel items=images showButtons=true showDotIndicators=true}}
 ```
 
 ## Contributing

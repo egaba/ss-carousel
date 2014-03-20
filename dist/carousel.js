@@ -57,15 +57,10 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   return buffer;
   
 });
-define("carousel-item",
+define("carousel-item", 
   ["exports"],
   function(__exports__) {
     "use strict";
-    /**
-     * @module frontend2
-     * @submodule frontend2-components
-     */
-
      /**
       * The CarouselItem is a sub-component of the Carousel which binds its active class
       * to the Carousel's current index. The template that the CarouselItem uses first looks for a yielded template.
@@ -75,7 +70,7 @@ define("carousel-item",
       * @extends Ember.Component
       * @requires Carousel
       */
-    var CarouselItem = Ember.Component.extend({
+    var CarouselItem = Ember.View.extend({
       init: function() {
         this._super();
         this.set('context', this.get('itemContext'));
@@ -117,15 +112,10 @@ define("carousel-item",
 
     __exports__["default"] = CarouselItem;
   });
-define("carousel-widget",
+define("carousel-widget", 
   ["touch-mixin","carousel-item","exports"],
   function(__dependency1__, __dependency2__, __exports__) {
     "use strict";
-    /**
-     * @module frontend2
-     * @submodule frontend2-components
-     */
-
     var TouchMixin = __dependency1__["default"];
     var CarouselItem = __dependency2__["default"];
 
@@ -151,45 +141,37 @@ define("carousel-widget",
     })();
 
     /**
-     * The `Carousel` is a component that can be used either as an image slider
-     * or product display. This Carousel is heavily based off of the Soysauce Carousel,
+     * The Carousel is a component that can be used either as an image slider
+     * or product display. This component is based heavily off of the [Soysauce Carousel](http://www.soysaucejs.com/#!/api/carousel/intro),
      * and implements many of its features.
      *
      * ## Creating a basic Carousel
      *
-     * A basic Carousel uses all defaults, such as the `partials/image-item` template,
-     * does not re-loop, and is swipeable. With an array of images, it would be invoked via:
-     *
-     * ```
-     * {{ss-carousel content=images}}
-     * ```
-     *
-     * ## Specifying an item template
-     *
-     * An item template can be specified one of two ways.
+     * A basic Carousel is a simple image slider, does not re-loop, and is swipeable.
+     * An item template can be specified one of two ways:
      *
      * 1) Through the `itemTemplateName` property:
      *
      * ```
-     * {{ss-carousel content=products itemTemplateName="partials/product-item"}}
+     * {{ss-carousel items=products itemTemplateName="partials/product-item"}}
      * ```
      *
      * 2) Using an inline template:
      *
      * ```
-     * {{#ss-carousel content=images}}
+     * {{#ss-carousel items=images}}
      *   <img class='my-image' {{bind-attr src=1x alt=alt}}>
      * {{/ss-carousel}}
      * ```
      *
      * ## Creating an infinite Carousel
      *
-     * An infinite Carousel re-loops its indicies when it reaches a boundary. It allows the user
+     * An infinite Carousel re-loops its indicies when it reaches a boundary (either min or max index). It allows the user
      * to flawlessly progress from the last index to the first index, and vice versa, without
      * noticing a jump. It can be invoked through specifying a positive `cloneDepth`:
      *
      * ```
-     * {{ss-carousel content=images cloneDepth=1}}
+     * {{ss-carousel items=images cloneDepth=1 itemTemplateName="partials/images"}}
      * ```
      *
      * The `cloneDepth` specifies the amount of clones it creates on each end. As the Carousel matures
@@ -207,15 +189,15 @@ define("carousel-widget",
      *
      * For example, in order to show dots and buttons, you would specify:
      * ```
-     * {{ss-carousel content=images showButtons=true showDotIndicators=true}}
+     * {{ss-carousel items=images showButtons=true showDotIndicators=true}}
      * ```
      *
      * @class Carousel
-     * @extends Ember.TouchComponent
+     * @extends Ember.View
      * @uses Ember.Freezable
      * @uses TouchMixin
      */
-    var Carousel = Ember.Component.extend(Ember.Freezable, TouchMixin, {
+    var Carousel = Ember.View.extend(Ember.Freezable, TouchMixin, {
       tagName: 'div',
 
       classNames: ['ss-carousel'],
@@ -299,7 +281,7 @@ define("carousel-widget",
        * @property {Boolean} hasSingleItem
        * @readOnly
        */
-      hasMultipleItems: Ember.computed.gt('content.length', 1).readOnly(),
+      hasMultipleItems: Ember.computed.gt('items.length', 1).readOnly(),
 
       /**
        * This property allows the user to transition indicies through touch events.
@@ -392,7 +374,7 @@ define("carousel-widget",
        */
       minIndex: function() {
         return this.get('cloneDepth');
-      }.property('content.@each').readOnly(),
+      }.property('items.@each').readOnly(),
 
       /**
        * This is the maximum index that the Carousel can transition to. This value
@@ -402,8 +384,8 @@ define("carousel-widget",
        * @readOnly
        */
       maxIndex: function() {
-        return this.get('content.length') + this.get('cloneDepth') - 1;
-      }.property('content.@each').readOnly(),
+        return this.get('items.length') + this.get('cloneDepth') - 1;
+      }.property('items.@each').readOnly(),
 
       /**
        * This is the width of a single CarouselItem in the ItemContainer
@@ -421,7 +403,7 @@ define("carousel-widget",
        */
       reset: function() {
         this.set('index', this.get('cloneDepth'));
-      }.observes('content.@each'),
+      }.observes('items.@each'),
 
       /**
        * Calculates the width of the CarouselItems. This method will need to be adjusted as new features are
@@ -439,7 +421,7 @@ define("carousel-widget",
        * If no yielded template is found, it will look for the template defined in the `itemTemplateName` property.
        *
        * @class CarouselItem
-       * @extends Ember.Component
+       * @extends Ember.View
        * @requires Carousel
        */
       CarouselItem: Ember.computed(function() {
@@ -458,11 +440,11 @@ define("carousel-widget",
        * active class to the Carousel's current index.
        *
        * @class CarouselDot
-       * @extends Ember.Component
+       * @extends Ember.View
        * @requires Carousel
        */
       CarouselDot: Ember.computed(function() {
-        return Ember.Component.extend({
+        return Ember.View.extend({
           carousel: this,
 
           tagName: 'div',
@@ -564,7 +546,7 @@ define("carousel-widget",
                this.transform = 'translate3d(' + containerOffset + 'px, 0, 0)';
              });
 
-           }.observes('carousel.content.@each', 'containerOffset'),
+           }.observes('carousel.items.@each', 'containerOffset'),
 
           /**
            * Calculates the ItemContainer's width which depends on the `itemWidth` and number of
@@ -575,21 +557,19 @@ define("carousel-widget",
           adjustContainerWidth: function() {
             var containerWidth;
 
-            containerWidth = this.get('carousel.itemWidth') * (this.get('carousel.content.length') + this.get('carousel.cloneDepth') * 2);
+            containerWidth = this.get('carousel.itemWidth') * (this.get('carousel.items.length') + this.get('carousel.cloneDepth') * 2);
 
             Ember.run.schedule('render', this._containerStyle || this.$()[0].style, function() {
               this.width = containerWidth + 'px';
             });
 
-          }.observes('carousel.content.@each', 'carousel.itemWidth'),
+          }.observes('carousel.items.@each', 'carousel.itemWidth'),
 
           _registerListeners: function() {
             var carousel = this.get('carousel');
 
             this.$().on(TRANSITION_END, function() {
-              Ember.run.schedule('sync', carousel, function() {
-                this.set('noTransition', true);
-              });
+              carousel.set('noTransition', true);
             });
           },
 
@@ -632,8 +612,7 @@ define("carousel-widget",
         var dot = this.get('CarouselDot');
         var dotContainer = this.get('DotContainer');
         var showDots = this.get('showDotIndicators');
-        var content = this.get('content');
-        var isNotSingle = this.get('content.length') > 1;
+        var items = this.get('items');
 
         // Clear containers
         // TODO: optimize this to only remove/add items where needed
@@ -641,7 +620,7 @@ define("carousel-widget",
         dotContainer.removeAllChildren();
 
         // Create items and dots and push into containers
-        content.forEach(function(context, index) {
+        items.forEach(function(context, index) {
           itemContainer.pushObject(item.create({
             itemContext: context,
             index: index + cloneDepth
@@ -655,11 +634,11 @@ define("carousel-widget",
         });
 
         // Create clones and push into item container
-        if (this.get('isInfinite') && isNotSingle) {
-          var contentLength = content.length;
+        if (this.get('isInfinite') && this.get('hasMultipleItems')) {
+          var contentLength = items.length;
           var lastIndex = contentLength - 1;
-          var prependedClones = content.slice(contentLength - cloneDepth, contentLength);
-          var appendedClones = content.slice(0, cloneDepth);
+          var prependedClones = items.slice(contentLength - cloneDepth, contentLength);
+          var appendedClones = items.slice(0, cloneDepth);
           var _viewBuffer = [];
 
           prependedClones.forEach(function(context, index) {
@@ -682,7 +661,7 @@ define("carousel-widget",
           itemContainer.pushObjects(_viewBuffer);
         }
 
-      }.observes('content.@each').on('willInsertElement'),
+      }.observes('items.@each').on('willInsertElement'),
 
       /**
        * This simply increases the index of the Carousel. If a positive `cloneDepth`
@@ -886,7 +865,7 @@ define("carousel-widget",
 
       _recurLoop: function(direction) {
         var matrix, values, offset, newOffset;
-        var contentLength = this.get('content.length');
+        var contentLength = this.get('items.length');
         var itemWidth = this.get('itemWidth');
         var carousel = this;
         var isNext = direction === 'next';
@@ -907,6 +886,11 @@ define("carousel-widget",
           }
 
           this.set('noTransition', true);
+          
+          Ember.run.next(this, function() {
+            this.set('noTransition', false);
+            this.set('index', nextIndex);
+          });
         });
 
         Ember.run.schedule('render', container.get('_containerStyle'), function() {
@@ -915,13 +899,6 @@ define("carousel-widget",
           this.OTransform =
           this.MozTransform =
           this.transform = 'translate3d(' + newOffset + 'px, 0, 0)';
-        });
-
-        Ember.run.schedule('afterRender', this, function() {
-          Ember.run.next(this, function() {
-            this.set('noTransition', false);
-            this.set('index', nextIndex);
-          });
         });
 
         return nextIndex;
@@ -960,4 +937,4 @@ define("carousel-widget",
       container.register('component:ss-carousel', Carousel);
     }
   });
-})(Ember);
+})(window.Ember);
