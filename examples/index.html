@@ -62,9 +62,9 @@
       </div>
       <div class="input-group">
         <span class="input-group-addon">
-          {{input type="checkbox" id="displayDots" checked=showDots}}
+          {{input type="checkbox" id="freezeCarousel" checked=freezeCarousel}}
         </span>
-        <label class="form-control" for="displayDots">Show Dots</label>
+        <label class="form-control" for="freezeCarousel">Freeze Carousel</label>
       </div>
     </div>
   </script>
@@ -72,9 +72,10 @@
   <script type="text/x-handlebars" data-template-name="index">
     <h1>Basic Carousel</h1>
     {{#ss-carousel
-      items=content
-      showDotIndicators=controllers.application.showDots
-      showButtons=controllers.application.showButtons}}
+      items=controllers.application.model.content
+      showDotIndicators=true
+      showButtons=controllers.application.showButtons
+      isFrozen=controllers.application.freezeCarousel}}
       <img {{bind-attr src=src}}>
     {{/ss-carousel}}
   </script>
@@ -82,10 +83,11 @@
   <script type="text/x-handlebars" data-template-name="infinite">
     <h1>Infinite Carousel</h1>
     {{#ss-carousel
-      items=content
+      items=controllers.application.model.content
       isInfinite=true
-      showDotIndicators=controllers.application.showDots
-      showButtons=controllers.application.showButtons}}
+      showDotIndicators=true
+      showButtons=controllers.application.showButtons
+      isFrozen=controllers.application.freezeCarousel}}
       <img {{bind-attr src=src}}>
     {{/ss-carousel}}
   </script>
@@ -93,11 +95,12 @@
   <script type="text/x-handlebars" data-template-name="autoslide">
     <h1>Auto-slide Carousel</h1>
     {{#ss-carousel
-      items=content
+      items=controllers.application.model.content
       isInfinite=true
       isAutoslide=true
-      showDotIndicators=controllers.application.showDots
-      showButtons=controllers.application.showButtons}}
+      showDotIndicators=true
+      showButtons=controllers.application.showButtons
+      isFrozen=controllers.application.freezeCarousel}}
       <img {{bind-attr src=src}}>
     {{/ss-carousel}}
   </script>

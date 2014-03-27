@@ -37,7 +37,7 @@ App.ApplicationRoute = Ember.Route.extend({
 
 App.ApplicationController = Ember.Controller.extend({
   showButtons: true,
-  showDots: true
+  freezeCarousel: false,
 });
 
 App.AutoslideController = App.IndexController = App.InfiniteController = Ember.ObjectController.extend({
