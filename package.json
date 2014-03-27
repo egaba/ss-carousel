@@ -14,7 +14,10 @@
     "gulp": "^3.5.5",
     "gulp-es6-module-transpiler": "^0.1.0",
     "gulp-ember-handlebars": "^0.6.0",
-    "gulp-concat": "^2.1.7",
-    "gulp-stylus": "^0.1.0"
+    "gulp-concat": "^2.2.0",
+    "gulp-stylus": "^0.1.0",
+    "requirejs": "^2.1.11",
+    "gulp-continuous-concat": "^0.1.1",
+    "gulp-watch": "^0.5.3"
   }
 }

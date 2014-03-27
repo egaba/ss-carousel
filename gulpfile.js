@@ -1,8 +1,10 @@
-var gulp = require('gulp');
-var concat = require('gulp-concat');
-var es6ModuleTranspiler = require('gulp-es6-module-transpiler');
-var handlebars = require('gulp-ember-handlebars');
-var stylus = require('gulp-stylus');
+var gulp              = require('gulp');
+var concat            = require('gulp-concat');
+var continuousConcat  = require('gulp-continuous-concat');
+var transpiler        = require('gulp-es6-module-transpiler');
+var handlebars        = require('gulp-ember-handlebars');
+var stylus            = require('gulp-stylus');
+var watch = require('gulp-watch');
 
 var paths = {
   tmp: './tmp',
@@ -23,7 +25,7 @@ gulp.task('compile-templates', function() {
 // Compile components
 gulp.task('compile-components', function() {
   gulp.src('./lib/components/*.js')
-    .pipe(es6ModuleTranspiler({
+    .pipe(transpiler({
        type: 'amd'
     }))
     .pipe(concat('components.js'))
@@ -33,7 +35,7 @@ gulp.task('compile-components', function() {
 // Compile Initializer
 gulp.task('compile-initializer', function() {
   gulp.src('./lib/initializer.js')
-    .pipe(es6ModuleTranspiler({
+    .pipe(transpiler({
        type: 'globals',
        imports: {
          ember: 'Ember'
@@ -55,8 +57,8 @@ gulp.task('compile-stylesheets', function () {
 // Compile all
 gulp.task('compile-all', ['compile-components', 'compile-templates', 'compile-stylesheets', 'compile-initializer']);
 
-// Consolidate
-gulp.task('concat-scripts', ['compile-all'], function() {
+// Bundle
+gulp.task('bundle', ['compile-all'], function() {
   // Concat Scripts
   // TODO: change to "paths.tmp + '/*.js"
   // until templates can be exported as AMD, order matters
@@ -69,12 +71,18 @@ gulp.task('concat-scripts', ['compile-all'], function() {
     .pipe(gulp.dest(paths.dest));
 });
 
-// Bundle
-gulp.task('bundle', ['compile-all', 'concat-scripts']);
-
 // Watch
 gulp.task('watch', function() {
-  gulp.watch('./lib/**/*.*', ['bundle']);
+  gulp.watch('./lib/**/*.*', ['compile-all']);
+
+  gulp.src([
+      paths.tmp + '/templates.js',
+      paths.tmp + '/components.js',
+      paths.tmp + '/initializer.js'
+    ])
+    .pipe(watch())
+    .pipe(continuousConcat('carousel.js'))
+    .pipe(gulp.dest(paths.dest));
 });
 
 gulp.task('default', ['bundle', 'watch']);
