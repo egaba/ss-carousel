@@ -37,7 +37,6 @@ An item template can be specified one of two ways:
   <img class='my-image' {{bind-attr src=1x alt=alt}}>
 {{/ss-carousel}}
 ```
-```
 
 #### Creating an infinite Carousel
 An infinite Carousel re-loops its indicies when it reaches a boundary (either min or max index). It allows the user
@@ -45,7 +44,10 @@ to flawlessly progress from the last index to the first index, and vice versa, w
 noticing a jump. It can be invoked through specifying the `isInfinite` property:
 
 ```
-{{ss-carousel items=images isInfinite=true itemTemplateName="partials/images"}}
+{{ss-carousel
+  items=images
+  itemTemplateName="partials/images"
+  isInfinite=true}}
 ```
 
 ## Visual Displays
@@ -59,7 +61,11 @@ The following properties can be enabled in order to show the accessory:
 
 For example, in order to show dots and buttons, you would specify:
 ```
-{{ss-carousel items=images showButtons=true showDotIndicators=true}}
+{{ss-carousel
+  items=images
+  itemTemplateName="partials/images"
+  showButtons=true
+  showDotIndicators=true}}
 ```
 
 ## Contributing
