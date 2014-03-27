@@ -438,7 +438,6 @@ define("carousel-widget",
       **/
       enableAutoslide: function() {
         if (this.get('isAutoslide')) {
-          console.log('');
           this.set('_isAutoslideTimerActive', true);
         }
       },
