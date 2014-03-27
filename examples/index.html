@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="end">
+  <head>
+    <title>Soysauce Carousel</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+
+    <link rel="stylesheet" href="./main.css">
+    <link rel="stylesheet" href="../dist/carousel.css">
+
+    <script src="../bower_components/hammerjs/hammer.js"></script>
+
+    <script src="../bower_components/jquery/jquery.js"></script>
+    <script src="../bower_components/handlebars/handlebars.js"></script>
+    <script src="../bower_components/ember/ember.js"></script>
+    <script src="../bower_components/ember-data/ember-data.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="../node_modules/requirejs/require.js"></script>
+    <script src="../bower_components/ember-touch-component/dist/main.js"></script>
+
+    <script src="../dist/carousel.js"></script>
+  </head>
+
+  <script type="text/x-handlebars">
+    <div class="navbar navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          {{link-to "Soysauce Carousel" "index" classNames="navbar-brand"}}
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            {{#link-to "index" tagName="li"}}{{link-to "Basic" "index"}}{{/link-to}}
+            {{#link-to "infinite" tagName="li"}}{{link-to "Infinite" "infinite"}}{{/link-to}}
+            {{#link-to "autoslide" tagName="li"}}{{link-to "Auto-slide" "autoslide"}}{{/link-to}}
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      {{outlet}}
+    </div>
+    <div class="container">
+      <h3>Options</h3>
+      <div class="input-group">
+        <span class="input-group-addon">
+          {{input type="checkbox" id="displayButtons" checked=showButtons}}
+        </span>
+        <label class="form-control" for="displayButtons">Show Buttons</label>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">
+          {{input type="checkbox" id="displayDots" checked=showDots}}
+        </span>
+        <label class="form-control" for="displayDots">Show Dots</label>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="index">
+    <h1>Basic Carousel</h1>
+    {{#ss-carousel
+      items=content
+      showDotIndicators=controllers.application.showDots
+      showButtons=controllers.application.showButtons}}
+      <img {{bind-attr src=src}}>
+    {{/ss-carousel}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="infinite">
+    <h1>Infinite Carousel</h1>
+    {{#ss-carousel
+      items=content
+      isInfinite=true
+      showDotIndicators=controllers.application.showDots
+      showButtons=controllers.application.showButtons}}
+      <img {{bind-attr src=src}}>
+    {{/ss-carousel}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="autoslide">
+    <h1>Auto-slide Carousel</h1>
+    {{#ss-carousel
+      items=content
+      isInfinite=true
+      isAutoslide=true
+      showDotIndicators=controllers.application.showDots
+      showButtons=controllers.application.showButtons}}
+      <img {{bind-attr src=src}}>
+    {{/ss-carousel}}
+  </script>
+
+  <script src="./app.js"></script>
+</html>
