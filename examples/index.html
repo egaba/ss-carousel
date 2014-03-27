@@ -72,7 +72,7 @@
   <script type="text/x-handlebars" data-template-name="index">
     <h1>Basic Carousel</h1>
     {{#ss-carousel
-      items=controllers.application.model.content
+      items=content
       showDotIndicators=true
       showButtons=controllers.application.showButtons
       isFrozen=controllers.application.freezeCarousel}}
@@ -83,7 +83,7 @@
   <script type="text/x-handlebars" data-template-name="infinite">
     <h1>Infinite Carousel</h1>
     {{#ss-carousel
-      items=controllers.application.model.content
+      items=content
       isInfinite=true
       showDotIndicators=true
       showButtons=controllers.application.showButtons
@@ -95,7 +95,7 @@
   <script type="text/x-handlebars" data-template-name="autoslide">
     <h1>Auto-slide Carousel</h1>
     {{#ss-carousel
-      items=controllers.application.model.content
+      items=content
       isInfinite=true
       isAutoslide=true
       showDotIndicators=true

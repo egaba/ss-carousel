@@ -6,6 +6,11 @@
   padding: 10px;
   background-color: rgba(0,0,0,0.4);
 }
+.ss-carousel.with-buttons .ss-carousel-btn.disabled {
+  opacity: 0.3;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+  filter: alpha(opacity=30);
+}
 .ss-carousel.with-buttons .ss-carousel-btn-icon {
   position: relative;
   border-width: 15px;

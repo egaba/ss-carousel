@@ -69,11 +69,6 @@ define("carousel-item",
      * @requires Carousel
     **/
     var CarouselItem = Ember.View.extend({
-      init: function() {
-        this._super();
-        this.set('context', this.get('itemContext'));
-      },
-
       tagName: 'div',
 
       classNames: ['ss-carousel-item'],
@@ -86,8 +81,9 @@ define("carousel-item",
        * This is the index of this particular item in the ItemContainer array.
        *
        * @property {Integer} index
+       * @default 0
       **/
-      index: 0,
+      index: 0, // TODO: change this to carousel's index - cloneDepth
 
       /**
        * This checks against the Carousel's current index to see if this item is active.
@@ -196,7 +192,7 @@ define("carousel-widget",
      * @uses Ember.Freezable
      * @uses TouchMixin
      */
-    var Carousel = Ember.View.extend(Ember.Freezable, TouchMixin, {
+    var Carousel = Ember.Component.extend(Ember.Freezable, TouchMixin, {
       tagName: 'div',
 
       classNames: ['ss-carousel'],
@@ -693,7 +689,7 @@ define("carousel-widget",
         // Create items and dots and push into containers
         items.forEach(function(context, index) {
           itemContainer.pushObject(item.create({
-            itemContext: context,
+            context: context,
             index: index + cloneDepth
           }));
 
@@ -714,7 +710,7 @@ define("carousel-widget",
 
           prependedClones.forEach(function(context, index) {
             _viewBuffer.pushObject(item.create({
-              itemContext: context,
+              context: context,
               index: index + contentLength
             }));
           });
@@ -724,7 +720,7 @@ define("carousel-widget",
 
           appendedClones.forEach(function(context, index) {
             _viewBuffer.pushObject(item.create({
-              itemContext: context,
+              context: context,
               index: index + cloneDepth
             }));
           });
