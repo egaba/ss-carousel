@@ -1,0 +1,97 @@
+$carousel-zoom-icon-position = right 65px bottom 10px;
+$carousel-zoom-icon-opacity = 0.75;
+
+$carousel-dots-should-overlay-image = true;
+$carousel-dot-inactive-color = #bbb;
+$carousel-dot-active-color = #000;
+$carousel-dot-size = 8px;
+
+$carousel-btn-size = 15px;
+$carousel-btn-color = #EEE;
+$carousel-btn-padding = 10px;
+$carousel-btn-bg-color = rgba(0, 0, 0, 0.4);
+$carousel-btn-border-radius = 5px;
+$carousel-btn-icon-spacing = 2px;
+
+.ss-carousel.with-buttons {
+  .ss-carousel-btn {
+    position: absolute;
+    top: 50%;
+    margin-top: -(($carousel-btn-size / 2) + ($carousel-btn-padding * 2));
+    cursor: pointer;
+    padding: 10px;
+    background-color: $carousel-btn-bg-color;
+  }
+
+  .ss-carousel-btn-icon {
+    position: relative;
+    border-width: $carousel-btn-size;
+    border-color: transparent $carousel-btn-color;
+    border-style: solid;
+    height: 0;
+    width: 0;
+  }
+
+  .ss-carousel-prev {
+    left: 0;
+    padding-left: 0;
+    border-radius: 0 $carousel-btn-border-radius $carousel-btn-border-radius 0;
+    .ss-carousel-btn-icon {
+      border-left-width: 0;
+      left: $carousel-btn-icon-spacing;
+    }
+  }
+
+  .ss-carousel-next {
+    right: 0;
+    padding-right: 0;
+    border-radius: $carousel-btn-border-radius 0 0 $carousel-btn-border-radius;
+    .ss-carousel-btn-icon {
+      border-right-width: 0;
+      right: $carousel-btn-icon-spacing;
+    }
+  }
+}
+
+.ss-carousel.with-zoom-icon {
+  // TBI in new carousel
+  [data-ss-component="zoom_icon"] {
+    position: absolute;
+    add-property($carousel-zoom-icon-position[0], $carousel-zoom-icon-position[1]);
+    add-property($carousel-zoom-icon-position[2], $carousel-zoom-icon-position[3]);
+    opacity: $carousel-zoom-icon-opacity;
+
+    &[data-ss-state="out"] {
+      sprite('icn-zoom-in');
+    }
+
+    &[data-ss-state="in"] {
+      sprite('icn-zoom-out');
+    }
+  }
+}
+
+.ss-carousel.with-dots {
+  [data-ss-component="dots"], .ss-carousel-dots {
+    if ($carousel-dots-should-overlay-image) {
+      position: absolute;
+      bottom: 0;
+    }
+    width: 100%;
+    margin: 5px;
+    text-align: center;
+  }
+
+  [data-ss-component="dot"], .ss-carousel-dot {
+    display: inline-block;
+    height: $carousel-dot-size;
+    width: @height;
+    margin: 0 5px;
+    background-color: $carousel-dot-inactive-color;
+    border-radius: 100%;
+    cursor: pointer;
+    &[data-ss-state="active"], &.active {
+      background-color: $carousel-dot-active-color;
+    }
+  }
+}

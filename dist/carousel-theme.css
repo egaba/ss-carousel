@@ -1,0 +1,69 @@
+.ss-carousel.with-buttons .ss-carousel-btn {
+  position: absolute;
+  top: 50%;
+  margin-top: -27.5px;
+  cursor: pointer;
+  padding: 10px;
+  background-color: rgba(0,0,0,0.4);
+}
+.ss-carousel.with-buttons .ss-carousel-btn-icon {
+  position: relative;
+  border-width: 15px;
+  border-color: transparent #eee;
+  border-style: solid;
+  height: 0;
+  width: 0;
+}
+.ss-carousel.with-buttons .ss-carousel-prev {
+  left: 0;
+  padding-left: 0;
+  -webkit-border-radius: 0 5px 5px 0;
+  border-radius: 0 5px 5px 0;
+}
+.ss-carousel.with-buttons .ss-carousel-prev .ss-carousel-btn-icon {
+  border-left-width: 0;
+  left: 2px;
+}
+.ss-carousel.with-buttons .ss-carousel-next {
+  right: 0;
+  padding-right: 0;
+  -webkit-border-radius: 5px 0 0 5px;
+  border-radius: 5px 0 0 5px;
+}
+.ss-carousel.with-buttons .ss-carousel-next .ss-carousel-btn-icon {
+  border-right-width: 0;
+  right: 2px;
+}
+.ss-carousel.with-zoom-icon [data-ss-component="zoom_icon"] {
+  position: absolute;
+  right: 65px;
+  bottom: 10px;
+  opacity: 0.75;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
+  filter: alpha(opacity=75);
+}
+.ss-carousel.with-dots [data-ss-component="dots"],
+.ss-carousel.with-dots .ss-carousel-dots {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin: 5px;
+  text-align: center;
+}
+.ss-carousel.with-dots [data-ss-component="dot"],
+.ss-carousel.with-dots .ss-carousel-dot {
+  display: inline-block;
+  height: 8px;
+  width: 8px;
+  margin: 0 5px;
+  background-color: #bbb;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+  cursor: pointer;
+}
+.ss-carousel.with-dots [data-ss-component="dot"][data-ss-state="active"],
+.ss-carousel.with-dots .ss-carousel-dot[data-ss-state="active"],
+.ss-carousel.with-dots [data-ss-component="dot"].active,
+.ss-carousel.with-dots .ss-carousel-dot.active {
+  background-color: #000;
+}

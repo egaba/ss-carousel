@@ -5,55 +5,53 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 
 function program1(depth0,data) {
   
-  var buffer = '';
+  var buffer = '', stack1;
   data.buffer.push("\n  ");
-  data.buffer.push(escapeExpression(helpers.view.call(depth0, "view.DotContainer", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "ItemContainer", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
+  data.buffer.push("\n\n  ");
+  stack1 = helpers['if'].call(depth0, "showDotIndicators", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(2, program2, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n\n  ");
+  stack1 = helpers['if'].call(depth0, "showButtons", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(4, program4, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("\n");
   return buffer;
   }
-
-function program3(depth0,data) {
+function program2(depth0,data) {
   
   var buffer = '';
-  data.buffer.push("\n  <div ");
-  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
-    'class': (":carousel-btn :carousel-next-btn :fastclick nextBtnDisabled:disabled")
-  },hashTypes:{'class': "STRING"},hashContexts:{'class': depth0},contexts:[],types:[],data:data})));
-  data.buffer.push(" ");
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "slideNext", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
-  data.buffer.push(">\n    <div class=\"carousel-btn-icon\"></div>\n  </div>\n  <div ");
-  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
-    'class': (":carousel-btn :carousel-prev-btn :fastclick prevBtnDisabled:disabled")
-  },hashTypes:{'class': "STRING"},hashContexts:{'class': depth0},contexts:[],types:[],data:data})));
-  data.buffer.push(" ");
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "slidePrev", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
-  data.buffer.push(">\n    <div class=\"carousel-btn-icon\"></div>\n  </div>\n");
+  data.buffer.push("\n    ");
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "DotContainer", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
+  data.buffer.push("\n  ");
   return buffer;
   }
 
-  data.buffer.push(escapeExpression(helpers.view.call(depth0, "view.ItemContainer", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
-  data.buffer.push("\n\n");
-  stack1 = helpers['if'].call(depth0, "showDotIndicators", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n\n");
-  stack1 = helpers['if'].call(depth0, "showButtons", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0],types:["ID"],data:data});
+function program4(depth0,data) {
+  
+  var buffer = '';
+  data.buffer.push("\n    <div ");
+  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
+    'class': (":ss-carousel-btn :ss-carousel-next nextBtnDisabled:disabled")
+  },hashTypes:{'class': "STRING"},hashContexts:{'class': depth0},contexts:[],types:[],data:data})));
+  data.buffer.push(" ");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "slideNext", {hash:{
+    'target': ("view")
+  },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push(">\n      <div class=\"ss-carousel-btn-icon\"></div>\n    </div>\n    <div ");
+  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
+    'class': (":ss-carousel-btn :ss-carousel-prev prevBtnDisabled:disabled")
+  },hashTypes:{'class': "STRING"},hashContexts:{'class': depth0},contexts:[],types:[],data:data})));
+  data.buffer.push(" ");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "slidePrev", {hash:{
+    'target': ("view")
+  },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push(">\n      <div class=\"ss-carousel-btn-icon\"></div>\n    </div>\n  ");
+  return buffer;
+  }
+
+  stack1 = helpers['with'].call(depth0, "view", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("\n");
-  return buffer;
-  
-});
-Ember.TEMPLATES["image-item"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
-this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', escapeExpression=this.escapeExpression;
-
-
-  data.buffer.push("<img ");
-  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
-    'src': ("1x"),
-    'alt': ("alt")
-  },hashTypes:{'src': "ID",'alt': "ID"},hashContexts:{'src': depth0,'alt': depth0},contexts:[],types:[],data:data})));
-  data.buffer.push(">\n");
   return buffer;
   
 });
@@ -145,8 +143,7 @@ define("carousel-widget",
      * or product display. This component is based heavily off of the [Soysauce Carousel](http://www.soysaucejs.com/#!/api/carousel/intro),
      * and implements many of its features.
      *
-     * ## Creating a basic Carousel
-     *
+     * #### Creating a basic Carousel
      * A basic Carousel is a simple image slider, does not re-loop, and is swipeable.
      * An item template can be specified one of two ways:
      *
@@ -164,19 +161,17 @@ define("carousel-widget",
      * {{/ss-carousel}}
      * ```
      *
-     * ## Creating an infinite Carousel
-     *
+     * #### Creating an infinite Carousel
      * An infinite Carousel re-loops its indicies when it reaches a boundary (either min or max index). It allows the user
      * to flawlessly progress from the last index to the first index, and vice versa, without
      * noticing a jump. It can be invoked through specifying the `isInfinite` property:
      *
      * ```
-     * {{ss-carousel items=images isInfinite=true itemTemplateName="partials/images"}}
+     * {{ss-carousel
+     *   items=images
+     *   itemTemplateName="partials/images"
+     *   isInfinite=true}}
      * ```
-     *
-     * The `cloneDepth` specifies the amount of clones it creates on each end. As the Carousel matures
-     * with more features, such as using a "peek" or have multiple items per swipe, it may be necessary
-     * to increase this to 2 or 3 clones.
      *
      * ## Visual Displays
      *
@@ -189,7 +184,11 @@ define("carousel-widget",
      *
      * For example, in order to show dots and buttons, you would specify:
      * ```
-     * {{ss-carousel items=images showButtons=true showDotIndicators=true}}
+     * {{ss-carousel
+     *   items=images
+     *   itemTemplateName="partials/images"
+     *   showButtons=true
+     *   showDotIndicators=true}}
      * ```
      *
      * @class Carousel
@@ -295,6 +294,14 @@ define("carousel-widget",
        * @default `hasMultipleItems`
        */
       isSwipeable: Ember.computed.defaultTo('hasMultipleItems'),
+
+      /**
+       * Enables the Carousel to automatically progress through its items.
+       *
+       * @property {Boolean} isAutoslide
+       * @default false
+       */
+      isAutoslide: false,
 
       /**
        * When `true`, zoom icons will be displayed over the image indicating
@@ -420,6 +427,53 @@ define("carousel-widget",
       }.on('didInsertElement'),
 
       /**
+       * The auto-slide interval in which the Carousel waits to change its index.
+       *
+       * @property {Integer} autoslideInterval
+       * @default 5000
+       */
+      autoslideInterval: 5000,
+
+      /**
+       * If auto-slide is enabled, this queues the `slideNext` function on the interval
+       * given by `autoslideInterval`.
+       *
+       * @method enableAutoslide
+       */
+      enableAutoslide: function() {
+        if (this.get('isAutoslide')) {
+         this.set('_isAutoslideTimerActive', true);
+        }
+      },
+
+      /**
+       * Cancels the auto-slide timer.
+       *
+       * @method disableAutoslide
+       */
+      disableAutoslide: function() {
+        if (this.get('isAutoslide')) {
+          this.set('_isAutoslideTimerActive', false);
+        }
+      },
+
+      _autoslideTimer: null,
+
+      _isAutoslideTimerActive: Ember.computed.defaultTo('isAutoslide'),
+
+      _setAutoslideTimer: function() {
+        Ember.run.cancel(this.get('_autoslideTimer'));
+
+        if (this.get('_isAutoslideTimerActive')) {
+          this.set('_autoslideTimer', Ember.run.later(this, this.slideNext, this.get('autoslideInterval')));
+        }
+      },
+
+      _startAutoslideTimer: function() {
+        Ember.run.once(this, this._setAutoslideTimer);
+      }.observes('_isAutoslideTimerActive', 'index').on('didInsertElement'),
+
+      /**
        * The CarouselItem is a sub-component of the Carousel which binds its active class
        * to the Carousel's current index. The template that the CarouselItem uses first looks for a yielded template.
        * If no yielded template is found, it will look for the template defined in the `itemTemplateName` property.
@@ -430,8 +484,7 @@ define("carousel-widget",
        */
       CarouselItem: Ember.computed(function() {
         var layout =  this.get('template')
-                      || this.templateForName(this.get('itemTemplateName'))
-                      || Ember.TEMPLATES['image-item']; // TODO: change to import
+                      || this.templateForName(this.get('itemTemplateName'));
 
         return CarouselItem.extend({
           carousel: this,
@@ -453,7 +506,7 @@ define("carousel-widget",
 
           tagName: 'div',
 
-          classNames: ['carousel-dot', 'fastclick'],
+          classNames: ['ss-carousel-dot'],
 
           classNameBindings: ['isActive:active'],
 
@@ -472,6 +525,19 @@ define("carousel-widget",
           isActive: function() {
             return this.get('index') === this.get('carousel.index');
           }.property('carousel.index'),
+
+          /**
+           * Attaches FastClick listeners to the dots, if FastClick is available.
+           *
+           * @method attachFastclickListeners
+           */
+          attachFastclickListeners: function() {
+            var fastclick = window.FastClick;
+
+            if (typeof fastclick !== 'undefined') {
+              this.get('carousel._fastclickListeners').push(fastclick.attach(this.$()[0]));
+            }
+          }.on('didInsertElement'),
 
           /**
            * Transitions the Carousel to the index of the clicked dot.
@@ -592,7 +658,7 @@ define("carousel-widget",
       DotContainer: Ember.computed(function() {
         return Ember.ContainerView.create({
           carousel: this,
-          classNames: ['carousel-dots']
+          classNames: ['ss-carousel-dots']
         });
       }),
 
@@ -639,7 +705,7 @@ define("carousel-widget",
 
         // Create clones and push into item container
         if (this.get('isInfinite') && this.get('hasMultipleItems')) {
-          var contentLength = items.length;
+          var contentLength = items.get('length');
           var lastIndex = contentLength - 1;
           var prependedClones = items.slice(contentLength - cloneDepth, contentLength);
           var appendedClones = items.slice(0, cloneDepth);
@@ -665,7 +731,7 @@ define("carousel-widget",
           itemContainer.pushObjects(_viewBuffer);
         }
 
-      }.observes('items.@each').on('willInsertElement'),
+      }.observes('items.@each').on('didInsertElement'),
 
       /**
        * This simply increases the index of the Carousel. If a positive `cloneDepth`
@@ -762,17 +828,29 @@ define("carousel-widget",
 
         // Sets up gestures that are defined in the `gestures` property
         // Inherited from TouchMixin
-        this.setupTouchGestures({
-          ignore: ['.carousel-btn', '.carousel-dots']
+        return this.setupTouchGestures({
+          ignore: ['.ss-carousel-btn', '.ss-carousel-dots']
         });
       },
 
       _handleDrag: function(e) {
         var containerOffset;
         var gesture = e.gesture;
-        var angle = Math.abs(gesture.angle);
-        var direction = gesture.direction;
-        var eventType = e.type;
+        var angle, direction, eventType;
+
+        if (!gesture) return;
+
+        angle = Math.abs(gesture.angle);
+        direction = gesture.direction;
+        eventType = e.type;
+
+        // Handle autoslide
+        if (eventType === 'touch') {
+          this.disableAutoslide();
+        }
+        else if (eventType === 'release') {
+          Ember.run.once(this, this.enableAutoslide);
+        }
 
         // Remove transitions, pre-drag
         if (eventType === 'touch' || !gesture.distance) {
@@ -808,10 +886,10 @@ define("carousel-widget",
           var overSwipeThreshold = gesture.distance > this.get('minDragTransitionDistance');
 
           if (overSwipeThreshold && direction === Hammer.DIRECTION_LEFT) {
-            Ember.run.once(this, this.slideNext);
+            return Ember.run.once(this, this.slideNext);
           }
           else if (overSwipeThreshold && direction === Hammer.DIRECTION_RIGHT) {
-            Ember.run.once(this, this.slidePrev);
+            return Ember.run.once(this, this.slidePrev);
           }
           else {
             this.set('noTransition', false);
@@ -835,9 +913,13 @@ define("carousel-widget",
         return null;
       }.on('swipe'),
 
+      _fastclickListeners: [],
+
       _registerListeners: function() {
         var carousel = this;
         var itemContainer = this.get('ItemContainer');
+        var fastclick = window.FastClick;
+        var listeners = this._fastclickListeners;
 
         // Component resize handler
         Ember.$(window).on('resize', Ember.$.proxy(this.setupItemWidth, this));
@@ -847,6 +929,12 @@ define("carousel-widget",
         // Register listeners for container
         Ember.run.once(itemContainer, itemContainer.get('_registerListeners'));
 
+        // Setup FastClick if it exists
+        if (typeof fastclick !== 'undefined') {
+          Ember.$('.ss-carousel-btn').each(function() {
+            listeners.push(fastclick.attach(this));
+          });
+        }
       }.on('didInsertElement'),
 
       _teardownListeners: function() {
@@ -856,6 +944,17 @@ define("carousel-widget",
 
         // Run teardown for container
         this.get('ItemContainer')._teardownListeners();
+
+        if (typeof window.FastClick !== 'undefined') {
+          this._fastclickListeners.forEach(function(obj) {
+            obj.destroy();
+          });
+
+          this._fastclickListeners.clear();
+        }
+
+        Ember.run.cancel(this.get('_autoslideTimer'));
+
       }.on('willDestroyElement'),
 
       _handleListenersOnFreeze: function() {
@@ -890,7 +989,7 @@ define("carousel-widget",
           }
 
           this.set('noTransition', true);
-          
+
           Ember.run.next(this, function() {
             this.set('noTransition', false);
             this.set('index', nextIndex);
@@ -933,14 +1032,26 @@ define("carousel-widget",
   "use strict";
   var Application = __dependency1__.Application;
 
-  var Carousel = requirejs(['carousel-widget']).default;
+  var module = requirejs(['carousel-widget']);
 
   Application.initializer({
     name: 'ss-carousel',
     initialize: function() {
-      Ember.Handlebars.registerHelper('ss-carousel', function(options) {
-        return Ember.Handlebars.helpers.view.call(this, Carousel, options);
-      });
+      var module = requirejs(['carousel-widget']);
+
+      // Uses loader
+      if (module.default) {
+        Ember.Handlebars.registerHelper('ss-carousel', function(options) {
+          return Ember.Handlebars.helpers.view.call(this, module.default, options);
+        });
+      }
+      else {
+        requirejs(['carousel-widget'], function(module) {
+          Ember.Handlebars.registerHelper('ss-carousel', function(options) {
+            return Ember.Handlebars.helpers.view.call(this, module.default, options);
+          });
+        });
+      }
     }
   });
 })(window.Ember);
