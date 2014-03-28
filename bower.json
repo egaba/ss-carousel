@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "ember-qunit": "^0.1.3",
-    "ember-canary": "http://builds.emberjs.com/canary/ember.js"
+    "ember-canary": "http://builds.emberjs.com/canary/ember.js",
+    "fastclick": "1.0.0"
   }
 }
