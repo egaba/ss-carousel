@@ -88,7 +88,7 @@ gulp.task('watch', function() {
 
 // Testing
 gulp.task('test', function() {
-  return gulp.src('./tests/test-runner.html')
+  return gulp.src('./tests/tests.html')
     .pipe(qunit());
 });
 
