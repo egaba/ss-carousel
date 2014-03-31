@@ -18,6 +18,7 @@
     "gulp-stylus": "^0.1.0",
     "requirejs": "^2.1.11",
     "gulp-continuous-concat": "^0.1.1",
-    "gulp-watch": "^0.5.3"
+    "gulp-watch": "^0.5.3",
+    "gulp-qunit": "^0.3.2"
   }
 }

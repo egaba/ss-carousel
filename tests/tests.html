@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="end">
+  <head>
+    <title>Soysauce Carousel Tests</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+
+    <link rel="stylesheet" href="../dist/carousel.css">
+    <link rel="stylesheet" href="../dist/carousel-theme.css">
+
+    <link rel="stylesheet" href="../node_modules/qunitjs/qunit/qunit.css">
+
+    <script src="../bower_components/hammerjs/hammer.js"></script>
+
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/handlebars/handlebars.js"></script>
+    <script src="../bower_components/ember/ember.js"></script>
+    <script src="../bower_components/ember-data/ember-data.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="../node_modules/requirejs/require.js"></script>
+    <script src="../node_modules/qunitjs/qunit/qunit.js"></script>
+    <script src="../bower_components/ember-touch-component/dist/main.js"></script>
+    <script src="../dist/carousel.js"></script>
+
+    <script src="../public/test-helpers.js"></script>
+  </head>
+  <body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <div id="ember-testing"></div>
+
+    <script type="text/x-handlebars">
+      <div class="container">
+        {{outlet}}
+      </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="index">
+      {{#ss-carousel items=content}}
+        <img {{bind-attr src=src}}>
+      {{/ss-carousel}}
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="infinite">
+      {{#ss-carousel
+        items=content
+        isInfinite=true}}
+        <img {{bind-attr src=src}}>
+      {{/ss-carousel}}
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="autoslide">
+      {{#ss-carousel
+        items=content
+        isInfinite=true
+        isAutoslide=true}}
+        <img {{bind-attr src=src}}>
+      {{/ss-carousel}}
+    </script>
+
+    <script src="../examples/app.js"></script>
+    <script src="tests.js"></script>
+  </body>
+</html>

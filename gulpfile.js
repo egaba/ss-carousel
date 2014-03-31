@@ -4,7 +4,8 @@ var continuousConcat  = require('gulp-continuous-concat');
 var transpiler        = require('gulp-es6-module-transpiler');
 var handlebars        = require('gulp-ember-handlebars');
 var stylus            = require('gulp-stylus');
-var watch = require('gulp-watch');
+var watch             = require('gulp-watch');
+var qunit             = require('gulp-qunit');
 
 var paths = {
   tmp: './tmp',
@@ -83,6 +84,12 @@ gulp.task('watch', function() {
     .pipe(watch())
     .pipe(continuousConcat('carousel.js'))
     .pipe(gulp.dest(paths.dest));
+});
+
+// Testing
+gulp.task('test', function() {
+  return gulp.src('./tests/test-runner.html')
+    .pipe(qunit());
 });
 
 gulp.task('default', ['bundle', 'watch']);

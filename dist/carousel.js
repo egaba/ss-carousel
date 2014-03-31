@@ -192,7 +192,7 @@ define("carousel-widget",
      * @uses Ember.Freezable
      * @uses TouchMixin
      */
-    var Carousel = Ember.Component.extend(Ember.Freezable, TouchMixin, {
+    var Carousel = Ember.View.extend(Ember.Freezable, TouchMixin, {
       tagName: 'div',
 
       classNames: ['ss-carousel'],
@@ -423,12 +423,12 @@ define("carousel-widget",
       }.on('didInsertElement'),
 
       /**
-       * The auto-slide interval in which the Carousel waits to change its index.
+       * The auto-slide interval in which the Carousel waits to change its index. Measured in ms.
        *
        * @property {Integer} autoslideInterval
-       * @default 5000
+       * @default 3500
       **/
-      autoslideInterval: 5000,
+      autoslideInterval: 3500,
 
       /**
        * If auto-slide is enabled, this queues the `slideNext` function on the interval
@@ -531,8 +531,11 @@ define("carousel-widget",
             var fastclick = window.FastClick;
 
             if (typeof fastclick !== 'undefined') {
-              this.get('carousel._fastclickListeners').push(fastclick.attach(this.$()[0]));
+              Ember.run.schedule('afterRender', this, function() {
+                this.get('carousel._fastclickListeners').push(fastclick.attach(this.$()[0]));
+              });
             }
+
           }.on('didInsertElement'),
 
           /**
@@ -635,7 +638,9 @@ define("carousel-widget",
             var carousel = this.get('carousel');
 
             this.$().on(TRANSITION_END, function() {
-              carousel.set('noTransition', true);
+              Ember.run(function() {
+                carousel.set('noTransition', true);
+              });
             });
           },
 
