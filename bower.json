@@ -13,7 +13,7 @@
     "tmp",
     "**/.*",
     "gulpfile.js",
-    "package.json",
+    "package.json"
   ],
   "dependencies": {
     "ember": "^1.3.0",
