@@ -1,4 +1,4 @@
-# Soysauce Carousel
+# Soysauce Carousel [![Build Status](https://travis-ci.org/egaba88/ss-carousel.svg?branch=master)](https://travis-ci.org/egaba88/ss-carousel)
 
 Mobile-friendly carousel / image slider component for [Ember](http://emberjs.com/).
 
