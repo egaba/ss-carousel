@@ -17,7 +17,7 @@ var exitCode = 0;
 // Compile templates (currently only global)
 // TODO: change to AMD, gulp-ember-handlebar's AMD exports seem incorrect
 gulp.task('compile-templates', function() {
-  gulp.src('./lib/templates/*.hbs')
+  return gulp.src('./lib/templates/*.hbs')
     .pipe(handlebars({
       outputType: 'browser'
     }))
@@ -27,7 +27,7 @@ gulp.task('compile-templates', function() {
 
 // Compile components
 gulp.task('compile-components', function() {
-  gulp.src('./lib/components/*.js')
+  return gulp.src('./lib/components/*.js')
     .pipe(transpiler({
        type: 'amd'
     }))
@@ -37,7 +37,7 @@ gulp.task('compile-components', function() {
 
 // Compile Initializer
 gulp.task('compile-initializer', function() {
-  gulp.src('./lib/initializer.js')
+  return gulp.src('./lib/initializer.js')
     .pipe(transpiler({
        type: 'globals',
        imports: {
@@ -49,7 +49,7 @@ gulp.task('compile-initializer', function() {
 
 // Compile stylesheets
 gulp.task('compile-stylesheets', function () {
-  gulp.src('./lib/stylesheets/*.styl')
+  return gulp.src('./lib/stylesheets/*.styl')
     .pipe(stylus({
       use: ['nib'],
       import: ['nib']
@@ -65,7 +65,7 @@ gulp.task('bundle', ['compile-all'], function() {
   // Concat Scripts
   // TODO: change to "paths.tmp + '/*.js"
   // until templates can be exported as AMD, order matters
-  gulp.src([
+  return gulp.src([
       paths.tmp + '/templates.js',
       paths.tmp + '/components.js',
       paths.tmp + '/initializer.js'
@@ -132,6 +132,6 @@ gulp.task('examples-js', ['bundle'], function() {
   .pipe(gulp.dest('./examples'));
 });
 
-gulp.task('examples', ['examples-css', 'examples-js']);
+gulp.task('site', ['examples-css', 'examples-js']);
 
 gulp.task('default', ['bundle', 'watch']);
