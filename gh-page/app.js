@@ -67,6 +67,12 @@ Ember.Route.reopen({
   }
 });
 
+App.ApplicationRoute = Ember.Route.extend({
+  activate: function() {
+    FastClick.attach(document.body)
+  }
+});
+
 App.ApplicationController = Ember.Controller.extend({
   showButtons: true,
   freezeCarousel: false,

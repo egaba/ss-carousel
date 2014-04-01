@@ -1,0 +1,54 @@
+body {
+  font-family: Lato, 'Helvetica Neue', Helvetica, Arial, Sans-Serif;
+}
+
+#logo {
+  display: inline-block;
+  max-width: 18px;
+  position: relative;
+  bottom: 5px;
+  left: 0px;
+  -webkit-transform: rotateZ(10deg);
+}
+
+.navbar {
+  background-color: #ff9c00;
+  margin-bottom: 0;
+}
+
+.navbar a {
+  color: black;
+}
+
+.navbar li a.active {
+  background-color: rgba(255,255,255,0.2);
+  color: white;
+  font-weight: bold;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-toggle {
+  background-color: black;
+}
+
+.navbar-toggle .icon-bar {
+  background-color: white;
+}
+
+.navbar-brand {
+  font-family: 'Bilbo Swash Caps', cursive-webkit-body;
+  font-size: 30px;
+}
+
+.input-group {
+  margin-bottom: 10px;
+}
+
+.ss-carousel {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.options {
+  margin-bottom: 50px;
+}

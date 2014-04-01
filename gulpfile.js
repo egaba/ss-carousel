@@ -12,7 +12,7 @@ var paths = {
   dest: './dist'
 };
 
-var errorCode = 0;
+var exitCode = 0;
 
 // Compile templates (currently only global)
 // TODO: change to AMD, gulp-ember-handlebar's AMD exports seem incorrect
@@ -78,7 +78,7 @@ gulp.task('bundle', ['compile-all'], function() {
 gulp.task('watch', function() {
   gulp.watch('./lib/**/*.*', ['compile-all']);
 
-  gulp.src([
+  return gulp.src([
       paths.tmp + '/templates.js',
       paths.tmp + '/components.js',
       paths.tmp + '/initializer.js'
@@ -93,13 +93,45 @@ gulp.task('test', function() {
   return gulp.src('./tests/tests.html')
     .pipe(qunit())
     .on('error', function(err) {
-      errorCode = 1;
+      exitCode = 1;
       process.emit('exit');
     });
 });
 
 process.on('exit', function() {
-  process.exit(errorCode);
+  process.exit(exitCode);
 });
+
+// Examples
+gulp.task('examples-css', ['bundle'], function() {
+  return gulp.src([
+    './bower_components/bootstrap/dist/css/bootstrap.min.css',
+    './bower_components/bootstrap/dist/css/bootstrap-theme.min.css',
+    './examples/main.css',
+    './dist/carousel.css',
+    './dist/carousel-theme.css'
+  ])
+  .pipe(concat('app.css'))
+  .pipe(gulp.dest('./examples'));
+});
+
+gulp.task('examples-js', ['bundle'], function() {
+  return gulp.src([
+    './bower_components/hammerjs/hammer.js',
+    './bower_components/fastclick/lib/fastclick.js',
+    './bower_components/jquery/dist/jquery.js',
+    './bower_components/handlebars/handlebars.js',
+    './bower_components/ember/ember.js',
+    './bower_components/ember-data/ember-data.js',
+    './bower_components/bootstrap/dist/js/bootstrap.min.js',
+    './node_modules/requirejs/require.js',
+    './bower_components/ember-touch-component/dist/main.js',
+    './dist/carousel.js'
+  ])
+  .pipe(concat('vendor.js'))
+  .pipe(gulp.dest('./examples'));
+});
+
+gulp.task('examples', ['examples-css', 'examples-js']);
 
 gulp.task('default', ['bundle', 'watch']);
