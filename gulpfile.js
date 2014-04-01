@@ -12,6 +12,8 @@ var paths = {
   dest: './dist'
 };
 
+var errorCode = 0;
+
 // Compile templates (currently only global)
 // TODO: change to AMD, gulp-ember-handlebar's AMD exports seem incorrect
 gulp.task('compile-templates', function() {
@@ -89,7 +91,15 @@ gulp.task('watch', function() {
 // Testing
 gulp.task('test', function() {
   return gulp.src('./tests/tests.html')
-    .pipe(qunit());
+    .pipe(qunit())
+    .on('error', function(err) {
+      errorCode = 1;
+      process.emit('exit');
+    });
+});
+
+process.on('exit', function() {
+  process.exit(errorCode);
 });
 
 gulp.task('default', ['bundle', 'watch']);

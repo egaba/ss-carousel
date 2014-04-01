@@ -2,10 +2,5 @@ language: node_js
 node_js:
   - 0.10
 
-script: ./node_modules/.bin/gulp test
-
-install:
-  - npm install
-
 notifications:
   email: false
