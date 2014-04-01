@@ -2,6 +2,10 @@
 
 Mobile-friendly carousel / image slider component for [Ember](http://emberjs.com/).
 
+## Demos
+
+See the [Github page!](http://egaba88.github.io/ss-carousel/)
+
 ## Installation
 
 Install via Bower:
