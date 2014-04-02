@@ -39,8 +39,8 @@
     <div class="container">
       {{outlet}}
     </div>
-    <div class="container options">
-      <h4>Options</h4>
+    <div class="container features">
+      <h4>Features</h4>
       <div class="input-group">
         <span class="input-group-addon">
           {{input type="checkbox" id="displayButtons" checked=showButtons}}
@@ -65,6 +65,7 @@
       isFrozen=controllers.application.freezeCarousel}}
       <img {{bind-attr src=src}}>
     {{/ss-carousel}}
+    <p class="lead text-center">By default, all Carousels are swipeable, including the most basic Carousel.</p>
   </script>
 
   <script type="text/x-handlebars" data-template-name="infinite">
@@ -77,6 +78,7 @@
       isFrozen=controllers.application.freezeCarousel}}
       <img {{bind-attr src=src}}>
     {{/ss-carousel}}
+    <p class="lead text-center">This Carousel loops-around and does not end.</p>
   </script>
 
   <script type="text/x-handlebars" data-template-name="autoslide">
@@ -90,6 +92,7 @@
       isFrozen=controllers.application.freezeCarousel}}
       <img {{bind-attr src=src}}>
     {{/ss-carousel}}
+    <p class="lead text-center">This Carousel automatically slides forward. By default, the delay between slides is 3500ms.</p>
   </script>
 
   <script src="./gh-page/app.js"></script>
