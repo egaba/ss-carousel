@@ -19,7 +19,8 @@
     "ember": "^1.3.0",
     "ember-data": "~1.0.0-beta.7",
     "ember-touch-component": "~1.0.3",
-    "bootstrap": "~3.1.1"
+    "bootstrap": "~3.1.1",
+    "ember-qunit": "~0.1.6"
   },
   "devDependencies": {
     "ember-canary": "http://builds.emberjs.com/canary/ember.js",
